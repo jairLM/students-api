@@ -30,6 +30,10 @@ public class StudentRestController {
     public ResponseEntity<RestResponse> updateStudent(@RequestBody Student student, @PathVariable Long id){
         return studentService.updateStudent(student, id);
     }
+    @DeleteMapping("/students/{id}")
+    public ResponseEntity<RestResponse> deleteStudent(@PathVariable Long id){
+        return studentService.deleteStudent(id);
+    }
 
 
 

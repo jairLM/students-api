@@ -104,6 +104,29 @@ public ResponseEntity<RestResponse> createStudent(Student student) {
 
     @Override
     public ResponseEntity<RestResponse> deleteStudent(Long id) {
-        return null;
+        RestResponse finalResponse = new RestResponse();
+        List<Student> dataList = new ArrayList<>();
+        HttpStatus status;
+        try{
+            Optional<Student> studentDataBase = IStudentDao.findById(id);
+            if(studentDataBase.isPresent()){
+                IStudentDao.delete(studentDataBase.get());
+                status = HttpStatus.OK;
+                finalResponse.setStatus(status);
+                dataList.add(studentDataBase.get());
+                finalResponse.setData(dataList);
+
+            }else{
+                status = HttpStatus.NOT_FOUND;
+                finalResponse.setStatus(status);
+                finalResponse.setData(dataList);
+            }
+
+        }catch (Exception e){
+            System.out.println("Error " + e.getMessage());
+        }
+
+
+        return new ResponseEntity<>(finalResponse, HttpStatus.OK);
     }
 }
