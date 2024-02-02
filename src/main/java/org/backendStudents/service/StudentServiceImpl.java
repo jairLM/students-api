@@ -29,7 +29,7 @@ public class StudentServiceImpl implements IStudentService {
                 HttpStatus status = HttpStatus.NO_CONTENT;
                 finalResponse.setStatus(status);
                 finalResponse.setData(dataList);
-                return new ResponseEntity<RestResponse>(finalResponse, finalResponse.getStatus());
+                return new ResponseEntity<>(finalResponse, finalResponse.getStatus());
             }else{
                 HttpStatus status = HttpStatus.OK;
                 finalResponse.setStatus(status);
@@ -38,11 +38,11 @@ public class StudentServiceImpl implements IStudentService {
 
         }catch (Exception e){
             System.out.println("******Error******* "+ e.getMessage());
-            return new ResponseEntity<RestResponse>(finalResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(finalResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
 
-        return new ResponseEntity<RestResponse>(finalResponse, HttpStatus.OK);
+        return new ResponseEntity<>(finalResponse, HttpStatus.OK);
     }
 
 @Override
