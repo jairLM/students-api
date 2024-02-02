@@ -1,6 +1,7 @@
 package org.backendStudents.model;
 
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 import javax.annotation.processing.Generated;
 
@@ -15,6 +16,8 @@ public class Student {
     private String fullName;
     private int age;
     private String studentId;
+    @NonNull
+    private String password;
 
     public Long getId() {
         return id;
@@ -34,6 +37,11 @@ public class Student {
 
     public String getStudentId() {
         return studentId;
+    }
+
+    @NonNull
+    public String getPassword() {
+        return password;
     }
 
     public void setId(Long id) {
@@ -56,7 +64,9 @@ public class Student {
         this.studentId = studentId;
     }
 
-
+    public void setPassword(@NonNull String password) {
+        this.password = password;
+    }
 
     @Override
     public String toString() {

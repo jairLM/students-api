@@ -2,9 +2,9 @@ package org.backendStudents.controller;
 
 
 import org.backendStudents.model.Student;
+import org.backendStudents.response.RestResponse;
 import org.backendStudents.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +19,8 @@ public class StudentRestController {
     private IStudentService studentService;
 
     @PostMapping("/student")
-    public ResponseEntity<Student> postStudent(@RequestBody Student student){
-        Student studentCreated = studentService.createStudent(student);
-        return new ResponseEntity<>(studentCreated, HttpStatus.OK);
+    public ResponseEntity<RestResponse> postStudent(@RequestBody Student student){
+        return studentService.createStudent(student);
     }
 
 

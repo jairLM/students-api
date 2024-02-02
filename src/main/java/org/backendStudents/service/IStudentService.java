@@ -1,10 +1,12 @@
 package org.backendStudents.service;
 
 import org.backendStudents.model.Student;
+import org.backendStudents.response.RestResponse;
+import org.springframework.http.ResponseEntity;
 
 public interface IStudentService {
 
-    public Student createStudent(Student student);
+    public ResponseEntity<RestResponse> createStudent(Student student);
 
 
 }
