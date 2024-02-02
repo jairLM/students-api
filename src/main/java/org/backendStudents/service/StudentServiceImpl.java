@@ -20,9 +20,30 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public ResponseEntity<RestResponse> getStudents() {
-        return null;
+        RestResponse finalResponse = new RestResponse();
+        List<Student> dataList;
+        try{
+            dataList = IStudentDao.findAll();
+            if(dataList.isEmpty()){
+                HttpStatus status = HttpStatus.NO_CONTENT;
+                finalResponse.setStatus(status);
+                finalResponse.setData(dataList);
+                return new ResponseEntity<RestResponse>(finalResponse, finalResponse.getStatus());
+            }else{
+                HttpStatus status = HttpStatus.OK;
+                finalResponse.setStatus(status);
+                finalResponse.setData(dataList);
+            }
+
+        }catch (Exception e){
+            System.out.println("******Error******* "+ e.getMessage());
+            return new ResponseEntity<RestResponse>(finalResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+        return new ResponseEntity<RestResponse>(finalResponse, HttpStatus.OK);
     }
-    
+
 @Override
 public ResponseEntity<RestResponse> createStudent(Student student) {
     RestResponse finalResponse = new RestResponse();
