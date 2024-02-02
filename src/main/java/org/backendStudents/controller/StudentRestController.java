@@ -1,6 +1,7 @@
 package org.backendStudents.controller;
 
 
+import org.apache.tomcat.util.net.jsse.JSSEUtil;
 import org.backendStudents.model.Student;
 import org.backendStudents.response.RestResponse;
 import org.backendStudents.service.IStudentService;
@@ -15,14 +16,19 @@ public class StudentRestController {
     @Autowired
     private IStudentService studentService;
 
-    @GetMapping("/student")
+    @GetMapping("/students")
     public ResponseEntity<RestResponse> getAllStudents(){
         return studentService.getStudents();
     }
 
-    @PostMapping("/student")
+    @PostMapping("/students")
     public ResponseEntity<RestResponse> postStudent(@RequestBody Student student){
         return studentService.createStudent(student);
+    }
+
+    @PutMapping("/students/{id}")
+    public ResponseEntity<RestResponse> updateStudent(@RequestBody Student student, @PathVariable Long id){
+        return studentService.updateStudent(student, id);
     }
 
 

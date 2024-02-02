@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -65,12 +66,44 @@ public ResponseEntity<RestResponse> createStudent(Student student) {
 }
 
     @Override
-    public ResponseEntity<RestResponse> updateStudent() {
-        return null;
+    public ResponseEntity<RestResponse> updateStudent(Student student, Long id) {
+        RestResponse finalResponse = new RestResponse();
+        List<Student> dataList = new ArrayList<>();
+        HttpStatus status ;
+        try{
+            Optional<Student> studentDataBase = IStudentDao.findById(id);
+            if(studentDataBase.isPresent()){
+                studentDataBase.get().setFullName(student.getFullName());
+                studentDataBase.get().setEmail(student.getEmail());
+                studentDataBase.get().setStudentId(student.getStudentId());
+                studentDataBase.get().setAge(student.getAge());
+                studentDataBase.get().setPassword(student.getPassword());
+
+                IStudentDao.save(studentDataBase.get());
+
+                dataList.add(studentDataBase.get());
+                status = HttpStatus.OK;
+
+                finalResponse.setStatus(status);
+                finalResponse.setData(dataList);
+
+            }
+
+
+
+
+        }catch (Exception e){
+            System.out.println("Error " + e.getMessage());
+        }
+
+
+
+
+        return new ResponseEntity<>(finalResponse, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<RestResponse> deleteStudent() {
+    public ResponseEntity<RestResponse> deleteStudent(Long id) {
         return null;
     }
 }

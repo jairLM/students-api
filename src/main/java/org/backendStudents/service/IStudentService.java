@@ -8,7 +8,7 @@ public interface IStudentService {
 
     public ResponseEntity<RestResponse> getStudents();
     public ResponseEntity<RestResponse> createStudent(Student student);
-    public ResponseEntity<RestResponse> updateStudent();
-    public ResponseEntity<RestResponse> deleteStudent();
+    public ResponseEntity<RestResponse> updateStudent(Student student, Long id);
+    public ResponseEntity<RestResponse> deleteStudent(Long id);
 
 }
