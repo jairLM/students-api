@@ -18,26 +18,11 @@ public class StudentServiceImpl implements IStudentService {
     private IStudentDao IStudentDao;
 
 
-//    @Override
-//    public ResponseEntity<StudentResponse> createStudent(Student student) {
-//        ResponseEntity<StudentResponse> responseRest;
-//        StudentResponse response = new StudentResponse();
-//        Map<String, Student> mapa = new HashMap<>();
-//        Student studentCreated = null;
-//        try {
-//            studentCreated = IStudentDao.save(student);
-//            mapa.put("hola", studentCreated);
-//            response.setData(mapa);
-//
-//
-//        } catch (Exception e) {
-//            System.out.println("Error " + e.getMessage());
-//        }
-//
-//
-//        return new ResponseEntity<StudentResponse>(response, HttpStatus.OK);
-//
-//    }
+    @Override
+    public ResponseEntity<RestResponse> getStudents() {
+        return null;
+    }
+    
 @Override
 public ResponseEntity<RestResponse> createStudent(Student student) {
     RestResponse finalResponse = new RestResponse();
@@ -57,4 +42,14 @@ public ResponseEntity<RestResponse> createStudent(Student student) {
     return new ResponseEntity<>(finalResponse, HttpStatus.OK);
 
 }
+
+    @Override
+    public ResponseEntity<RestResponse> updateStudent() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<RestResponse> deleteStudent() {
+        return null;
+    }
 }
