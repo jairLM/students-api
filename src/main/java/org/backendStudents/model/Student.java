@@ -16,6 +16,7 @@ public class Student {
     private String fullName;
     private int age;
     private String studentId;
+    private boolean active;
     @NonNull
     private String password;
 
@@ -44,6 +45,10 @@ public class Student {
         return password;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -66,6 +71,10 @@ public class Student {
 
     public void setPassword(@NonNull String password) {
         this.password = password;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override
