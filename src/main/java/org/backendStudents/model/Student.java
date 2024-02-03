@@ -2,8 +2,11 @@ package org.backendStudents.model;
 
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
+import org.backendStudents.model.Course;
 
-import javax.annotation.processing.Generated;
+
+
+
 
 @Entity
 @Table(name ="student")
@@ -17,8 +20,12 @@ public class Student {
     private int age;
     private String studentId;
     private boolean active;
+    @ManyToOne
+    private Course course;
     @NonNull
     private String password;
+
+
 
     public Long getId() {
         return id;
